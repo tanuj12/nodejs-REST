@@ -52,9 +52,13 @@ app.use((error, req,res,next) => {
     const data = error.data
     res.status(status).json({message, data});
 })
-mongoose.connect('Your mongogoDb uri')
+mongoose.connect('Your mongodb server')
 .then(result => {
-    app.listen(8080);
+    const server = app.listen(8080);
+    const io = require('./socket').init(server);
+    io.on('connection', socket => {
+        console.log("Here");
+    })
 })
 .catch(err => {
     console.log(err)
