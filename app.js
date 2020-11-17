@@ -52,7 +52,7 @@ app.use((error, req,res,next) => {
     const data = error.data
     res.status(status).json({message, data});
 })
-mongoose.connect('MongoDB server url')
+mongoose.connect('Your mongodb url')
 .then(result => {
     app.listen(8080);
 })
